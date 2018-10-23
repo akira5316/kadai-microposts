@@ -1,7 +1,8 @@
 class ToppagesController < ApplicationController
   def index
+    if logged_in?
+      @micropost = current_user.microposts.build #form_for用
+      @microposts = current_user.microposts.order('created_at DESC').page(params[:page])
+    end
   end
-  # アクションの最後にrender :indexが実行される
-  # render :index で views/index.html.erbを呼び出す
-  
 end
