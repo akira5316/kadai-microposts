@@ -1,0 +1,15 @@
+<% if current_user.liked?(micropost) %>
+  <%= form_for(current_user.likes.find_by(micropost_id: micropost.id), :html => { :method => 'delete', :style => 'display: inline-block;'}) do |f| %>
+    <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%= f.submit 'Unlike', class: 'btn btn-warning btn-xs' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.likes.build, :html => { :style => 'display: inline-block;'}) do |f| %>
+    <%= hidden_field_tag :micropost_id, micropost.id %>
+    <%= f.submit 'Like', class: 'btn btn-warning btn-xs active' %>
+  <% end %>
+<% end %>
+
+
+      
+    
